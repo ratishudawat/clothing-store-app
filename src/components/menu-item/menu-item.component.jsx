@@ -2,7 +2,7 @@ import React from 'react';
 import './menu-item.styles.scss';
 
 const MenuItem = (props) => (
-  <div className='menu-item'>
+  <div className={`menu-item ${props.size ? props.size : ''}`}>
     <div
       className='background-image'
       style={{

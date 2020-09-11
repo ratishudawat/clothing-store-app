@@ -4,32 +4,40 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
 import './header.styles.scss';
 import { auth } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
 
-const Header = ({ currentUser }) => (
-  <div className='header'>
-    <Link className='logo-container' to='/'>
-      <Logo className='logo' />
-    </Link>
-    <div className='options'>
-      <Link className='option' to='/shop'>
-        SHOP
-      </Link>
-      <Link className='option' to='/contact'>
-        CONTACT
-      </Link>
-      {currentUser ? (
-        <div className='option' onClick={() => auth.signOut()}>
-          SIGN OUT
-        </div>
-      ) : (
-        <Link className='option' to='/signin'>
-          SIGN IN
+class Header extends React.Component {
+  render() {
+    return (
+      <div className='header'>
+        <Link className='logo-container' to='/'>
+          <Logo className='logo' />
         </Link>
-      )}
+        <div className='options'>
+          <Link className='option' to='/shop'>
+            SHOP
+          </Link>
+          <Link className='option' to='/contact'>
+            CONTACT
+          </Link>
+          {this.props.currentUser ? (
+            <div className='option' onClick={() => auth.signOut()}>
+              SIGN OUT
+            </div>
+          ) : (
+            <Link className='option' to='/signin'>
+              SIGN IN
+            </Link>
+          )}
+          <CartIcon />
+        </div>
+      </div>
+    );
+  }
+}
 
-      <CartIcon />
-    </div>
-  </div>
-);
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser
+});
 
-export default Header;
+export default connect(mapStateToProps)(Header);
