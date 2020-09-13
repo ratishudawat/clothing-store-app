@@ -6,7 +6,7 @@ const CollectionItem = ({ name, price, imageUrl }) => (
     <div
       className='image'
       style={{
-        backgroundImage: `url(${imageUrl})`
+        backgroundImage: `url(${imageUrl})`,
       }}
     />
     <div className='collection-footer'>
@@ -15,6 +15,5 @@ const CollectionItem = ({ name, price, imageUrl }) => (
     </div>
   </div>
 );
-
 
 export default CollectionItem;
