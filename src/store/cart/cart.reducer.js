@@ -1,7 +1,9 @@
-const { cartActionTypes } = require('./cart.types');
+import { cartActionTypes } from './cart.types';
+import { addItemsToCart } from './cart.utils';
 
 const INIT_STATE = {
-  hidden: true
+  hidden: true,
+  cartItems: [],
 };
 
 const cartReducer = (state = INIT_STATE, action) => {
@@ -9,8 +11,14 @@ const cartReducer = (state = INIT_STATE, action) => {
     case cartActionTypes.TOGGLE_CART_HIDDEN:
       return {
         ...state,
-        hidden: !state.hidden
+        hidden: !state.hidden,
       };
+    case cartActionTypes.ADD_ITEM:
+      return {
+        ...state,
+        cartItems: addItemsToCart(state.cartItems, action.payload),
+      };
+
     default:
       return state;
   }
