@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
 
 const config = {
   apiKey: 'AIzaSyCFOysV8bne58G3HbZ7Tv1sAkKDVjxMfU8',
@@ -10,7 +10,7 @@ const config = {
   storageBucket: 'crwn-db-da9e5.appspot.com',
   messagingSenderId: '312821905369',
   appId: '1:312821905369:web:2faeec9855c620628b8bc8',
-  measurementId: 'G-DBKY4ZWM7Y'
+  measurementId: 'G-DBKY4ZWM7Y',
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -28,7 +28,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (err) {
       console.log('error occured while creating user', err.message);
